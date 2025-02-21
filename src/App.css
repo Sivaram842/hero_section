@@ -1,0 +1,40 @@
+.hero-section {
+    padding-top: 80px;
+    /* Push content down so it's not hidden behind navbar */
+    text-align: center;
+    background-color: #1a1a1a;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Full-Page Background Image */
+.full-page {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./assets/studio.jpg");
+    /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* About Section */
+.about-section {
+    position: relative;
+    z-index: 1;
+    background-color: rgb(18, 17, 17);
+    padding: 5rem;
+    min-height: 100vh;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    opacity: 0;
+    transform: translateY(100px);
+    background-image: url("./assets/pha5e.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

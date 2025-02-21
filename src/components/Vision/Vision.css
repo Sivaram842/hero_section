@@ -1,0 +1,68 @@
+.vision-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #121212;
+    color: white;
+    padding: 80px 10%;
+    min-height: 80vh;
+    position: relative;
+}
+
+.vision-title {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 5px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.vision-text {
+    flex: 1;
+    max-width: 45%;
+}
+
+.vision-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.see-more {
+    display: inline-block;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    margin-top: 10px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.see-more:hover {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+.vision-bold {
+    flex: 1;
+    text-align: right;
+}
+
+.vision-bold h1 {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.2;
+    text-transform: uppercase;
+    transition: transform 0.3s ease;
+}
+
+.vision-bold h1:hover {
+    transform: scale(1.05);
+}
