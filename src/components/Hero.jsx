@@ -8,16 +8,15 @@ import lucasImage from "../assets/lucas.jpg";
 
 const Hero = () => {
     const [showHero, setShowHero] = useState(false);
+    const [hoveredImage, setHoveredImage] = useState(null); // Track hovered image
 
     useEffect(() => {
         const timeout = setTimeout(() => {
             setShowHero(true);
-        }, 3000); // After title animation, show Hero Section
-
+        }, 3000);
         return () => clearTimeout(timeout);
     }, []);
 
-    // 🟢 Function to Create Mouse Movement Effect
     const useImageMovement = (range = 200) => {
         const x = useMotionValue(0);
         const y = useMotionValue(0);
@@ -57,13 +56,12 @@ const Hero = () => {
 
     const bigImageMotion = useImageMovement(200);
     const capImageMotion = useImageMovement(200);
-    const topRightImageMotion = useImageMovement(200); // 🆕 Added new image effect
-    const bottomLeftImageMotion = useImageMovement(200); // 🆕 Added new image effect
+    const topRightImageMotion = useImageMovement(200);
+    const bottomLeftImageMotion = useImageMovement(200);
 
     return (
         <div className="hero-container">
             {!showHero ? (
-                // Title Animation
                 <motion.div className="intro-title">
                     <motion.span
                         initial={{ opacity: 0 }}
@@ -81,13 +79,24 @@ const Hero = () => {
                     </motion.span>
                 </motion.div>
             ) : (
-                // Hero Section Appears After Animation
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1.5, ease: "easeOut" }}
                 >
-                    <div className="hero-text">
+                    {/* Hero Text with Dynamic Z-Index and Outline Effect */}
+                    <div
+                        className="hero-text"
+                        style={{
+                            position: "relative",
+                            zIndex: hoveredImage ? 1 : 2, // Move text behind images when hovering
+                            color: hoveredImage ? "black" : "white", // Change text color to black on hover
+                            WebkitTextStroke: hoveredImage ? "1px grey" : "0px grey", // White outline effect
+                            opacity: hoveredImage ? 0.4 : 1, // Reduce opacity when text is in outline mode
+                            transition: "opacity 0.3s ease-in-out, color 0.3s ease-in-out",
+                        }}
+                    >
+
                         {["MARSEILLE", "—PARIS", "A WARM", "AND", "DYNAMIC", "—TEAM"].map((text, index) => (
                             <motion.span
                                 key={index}
@@ -102,50 +111,61 @@ const Hero = () => {
                         ))}
                     </div>
 
-                    {/* 🖼️ Images with Motion Effects */}
+                    {/* Images with Motion Effects */}
                     <motion.img
                         src={bigImage}
                         className="image-top-left"
-                        style={{ x: bigImageMotion.xMove, y: bigImageMotion.yMove }}
+                        style={{
+                            x: bigImageMotion.xMove,
+                            y: bigImageMotion.yMove,
+                            opacity: hoveredImage === null || hoveredImage === "big" ? 1 : 0,
+                            zIndex: hoveredImage === "big" ? 2 : 1,
+                        }}
+                        onMouseEnter={() => setHoveredImage("big")}
+                        onMouseLeave={() => setHoveredImage(null)}
                         onMouseMove={bigImageMotion.handleMouseMove}
-                        onMouseLeave={bigImageMotion.handleMouseLeave}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
                     />
 
                     <motion.img
                         src={capImage}
                         className="image-bottom-right"
-                        style={{ x: capImageMotion.xMove, y: capImageMotion.yMove }}
+                        style={{
+                            x: capImageMotion.xMove,
+                            y: capImageMotion.yMove,
+                            opacity: hoveredImage === null || hoveredImage === "cap" ? 1 : 0,
+                            zIndex: hoveredImage === "cap" ? 2 : 1,
+                        }}
+                        onMouseEnter={() => setHoveredImage("cap")}
+                        onMouseLeave={() => setHoveredImage(null)}
                         onMouseMove={capImageMotion.handleMouseMove}
-                        onMouseLeave={capImageMotion.handleMouseLeave}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.7 }}
                     />
 
-                    {/* 🆕 New Images Added */}
                     <motion.img
                         src={maxImage}
                         className="image-top-right"
-                        style={{ x: topRightImageMotion.xMove, y: topRightImageMotion.yMove }}
+                        style={{
+                            x: topRightImageMotion.xMove,
+                            y: topRightImageMotion.yMove,
+                            opacity: hoveredImage === null || hoveredImage === "max" ? 1 : 0,
+                            zIndex: hoveredImage === "max" ? 2 : 1,
+                        }}
+                        onMouseEnter={() => setHoveredImage("max")}
+                        onMouseLeave={() => setHoveredImage(null)}
                         onMouseMove={topRightImageMotion.handleMouseMove}
-                        onMouseLeave={topRightImageMotion.handleMouseLeave}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.9 }}
                     />
 
                     <motion.img
                         src={lucasImage}
                         className="image-bottom-left"
-                        style={{ x: bottomLeftImageMotion.xMove, y: bottomLeftImageMotion.yMove }}
+                        style={{
+                            x: bottomLeftImageMotion.xMove,
+                            y: bottomLeftImageMotion.yMove,
+                            opacity: hoveredImage === null || hoveredImage === "lucas" ? 1 : 0,
+                            zIndex: hoveredImage === "lucas" ? 2 : 1,
+                        }}
+                        onMouseEnter={() => setHoveredImage("lucas")}
+                        onMouseLeave={() => setHoveredImage(null)}
                         onMouseMove={bottomLeftImageMotion.handleMouseMove}
-                        onMouseLeave={bottomLeftImageMotion.handleMouseLeave}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut", delay: 1.1 }}
                     />
                 </motion.div>
             )}

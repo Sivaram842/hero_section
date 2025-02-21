@@ -23,8 +23,11 @@
 /* Logo */
 .logo {
     font-size: 1.8rem;
-    font-weight: bold;
+    font-weight: 1000;
     cursor: pointer;
+    font-stretch: expanded;
+    transform: scaleX(1.5);
+    letter-spacing: -1px;
 }
 
 /* Navigation links */

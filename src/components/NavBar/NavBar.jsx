@@ -12,7 +12,7 @@ export default function Navbar() {
         >
             {/* Logo / Title */}
             <motion.h1 className="logo" whileHover={{ scale: 1.1 }} >
-                Pha5e
+                PHA5E
             </motion.h1>
 
             {/* Navigation Links */}
